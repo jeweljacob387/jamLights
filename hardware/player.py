@@ -1,8 +1,7 @@
 from playsound import playsound
-from time import sleep
 
-playsound('audio.mp3', False)
 
-for i in range(9999):
-    print(i)
-    sleep(1)
+def playMp3File(filename):
+    filename = "../audiofiles/" + filename
+    print('Playing file', filename)
+    playsound(filename, False)
