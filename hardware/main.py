@@ -1,4 +1,4 @@
-from player import playMp3File
+from player import playMp3File, stopPlaying
 from time import sleep
 from frames import frames
 from i2cMaster import setFrame, setNodesList
@@ -9,3 +9,6 @@ playMp3File(fileName)
 
 for frame in frames:
     setFrame(frame)
+
+
+stopPlaying()
