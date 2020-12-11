@@ -1,31 +1,33 @@
-import nodes
+from nodes import Node, nodes
+from groups import groups
 from json import load
+
+frames = []
 
 
 class Frame:
-    def __init__(self, nodes, duration):
+    def __init__(self, nodes):
         self.nodes = nodes
-        self.duration = duration
 
 
-frames = [
-    Frame([nodes.tree1, nodes.streetLight3], 10000),
-    Frame([nodes.tree2], 2000),
-    Frame([nodes.tree2, nodes.tree3], 5000),
-    Frame([nodes.tree3], 5400),
-    Frame([nodes.tree1, nodes.streetLight3, nodes.tree3], 3000),
-    Frame([nodes.tree1, nodes.tree2], 1000)
-]
+def loadFrames(fileName):
+    with open('../framesJsons/'+fileName+'.json') as file:
+        data = load(file)
 
-with open('../framesJons/frames.json') as f:
-    data = load(f)
-
-frames = data['frames']
-duration = len(frames[0]['nodes'][0]['frameSates'])
-print(duration)
-for i in range(duration):
-    for frame in frames:
-        for node in frame['nodes']:
-            for time in node['frameSates']:
-                if time:
-                    print(time)
+    framesData = data['groups']
+    duration = len(framesData[0]['nodes'][0]['frameSates'])
+    print(duration)
+    for time in range(duration):
+        nodesOnInFrame = []
+        for group in framesData:
+            for node in group['nodes']:
+                nodeName = str(groups[group['name']]) + \
+                    '-'+str(node['deviceIndex'])
+                mappedNode = Node(
+                    nodeName, groups[group['name']], node['deviceIndex']
+                )
+                if nodeName not in [savedNode.name for savedNode in nodes]:
+                    nodes.add(mappedNode)
+                if node['frameSates'][time]:
+                    nodesOnInFrame.append(mappedNode)
+        frames.append(Frame(nodesOnInFrame))
