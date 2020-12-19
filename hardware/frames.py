@@ -11,6 +11,7 @@ class Frame:
 
 
 def loadFrames(fileName):
+    frames.clear()
     with open('../framesJsons/'+fileName+'.json') as file:
         data = load(file)
 

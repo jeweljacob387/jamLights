@@ -3,14 +3,15 @@ from time import sleep
 from frames import frames, loadFrames
 from i2cMaster import setFrame
 
-sourceFiles = ['audio1']
+sourceFiles = [ 'audio1']
 
 for file in sourceFiles:
     loadFrames(file)
     playMp3File(file)
+    sleep(1.4)
 
-for frame in frames:
-    setFrame(frame)
+    for frame in frames:
+        setFrame(frame)
 
 
 stopPlaying()
