@@ -1,5 +1,5 @@
 groups = {
-    'frontLeft': 1,
+    'frontLeft': 0,
     'frontCenter': 2,
     'frontRight': 3,
     'middleLeft': 4,
