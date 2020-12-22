@@ -9,10 +9,9 @@ class Frame:
     def __init__(self, nodes):
         self.nodes = nodes
 
-
 def loadFrames(fileName):
     frames.clear()
-    with open('../framesJsons/'+fileName+'.json') as file:
+    with open('/home/pi/xmas2k20/jamLights/framesJsons/'+fileName+'.json') as file:
         data = load(file)
 
     framesData = data['groups']

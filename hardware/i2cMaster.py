@@ -16,7 +16,7 @@ def setFrame(frame: Frame):
         else:
             turnOffNode(node)
     # print('\033[37m', "...")
-    sleep(196.5/1000)
+    # sleep(196.5/1000)
 
 
 def turnOnNode(node):

@@ -8,5 +8,5 @@ def writeToDevice(addr, deviceIndex, state):
     try:
         bus.write_block_data(addr, deviceIndex, [state])  # replace with addr
     except:
-        # print('IO ERROR')
+        # print(addr)
         pass
