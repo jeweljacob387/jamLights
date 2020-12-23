@@ -15,6 +15,10 @@ void setup() {
   int devicesCount = sizeof(devices);
   for(int i =0; i<devicesCount; i++) {
     pinMode(devices[i], OUTPUT);
+    digitalWrite(devices[i], HIGH);
+    delay(200);
+    digitalWrite(devices[i], LOW);
+    delay(300);
   }
 }
 
@@ -26,6 +30,7 @@ void receiveEvent(int howMany) {
     int deviceIndex = Wire.read();
     Wire.read();
     int state = Wire.read();
+    Serial.print("/n");
 //    Serial.print("dev ");
 //    Serial.print(deviceIndex);
 //    Serial.print("\tstate ");
@@ -34,10 +39,10 @@ void receiveEvent(int howMany) {
       if (state) {
         digitalWrite(devices[deviceIndex -1], HIGH);
         }
-        else {
+      else {
           digitalWrite(devices[deviceIndex -1], LOW);
-          }
-      Serial.println("delayed");
+        }
+    Serial.write('\n');
 }
 
 int getSlaveAddress() {
